@@ -1,9 +1,10 @@
 // Variables and constants
 const cart = document.querySelector(".cart");
 const cartContent = document.querySelector(".cart-content");
+const cartQuantity = document.querySelector(".cart-quantity");
 const cartIcon = document.querySelector("#cart-icon");
 const closeCartBtn = document.querySelector(".close-cart");
-const delItemBtn = document.querySelector("cart-remove");
+const delItemBtn = document.querySelector(".cart-remove");
 const nav = document.querySelector(".nav");
 
 // Cart open and close
@@ -29,5 +30,9 @@ if (document.readyState === "loading") {
 }
 
 function ready() {
-    
+    const removeItem = ()=>{
+        const cart = delItemBtn.parentNode.parentNode;
+        cart.remove();
+    }
+    delItemBtn.addEventListener("click", removeItem);
 }
