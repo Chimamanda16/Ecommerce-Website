@@ -22,6 +22,16 @@ const openCart = ()=>{
 cartIcon.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart)
 
+// Keep item quantity positive
+const positive = () =>{
+    if(cartQuantity.value <= 0 || isNaN(cartQuantity)){
+        cartQuantity.value = 1;
+    }
+}
+cartQuantity.addEventListener("click", positive);
+
+// Update Total Price
+
 // Remove item from cart
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", ready);
