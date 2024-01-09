@@ -46,7 +46,7 @@ img{
 .cart{
     margin: auto 2% auto auto;
     padding: 4%;
-    position: absolute;
+    position: fixed;
     right: 0;
     text-align: center;
     width: 30%;
@@ -70,6 +70,7 @@ img{
 }
 
 .cart-img{
+    object-fit: cover;
     width: 55%;
 }
 
