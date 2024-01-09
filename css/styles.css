@@ -69,6 +69,10 @@ section{
     gap: 5%;
 }
 
+.cart-content{
+    margin-bottom: 2%;
+}
+
 #cart-icon::after{
     background-color: var(--text-color);
     border-radius: 50%;

@@ -14,27 +14,27 @@ const totalPrice = document.querySelector(".total-price");
 // Add to cart
 const getItemInfo = (event)=>{
     var parentElement = event.parentNode;
-    var addImg = parentElement.querySelectorAll(".product-img");
+    var addImg = parentElement.querySelector(".product-img");
+    var imgSrc = addImg.getAttribute("src");
     var imgPrice = parentElement.querySelector(".price");
     var productTitle = parentElement.querySelector(".product-title");
     const createItemInfo = (img, title, pricing)=>{
         var cartShopBox = document.createElement("div");
         cartShopBox.classList.add("cart-box");
-        for(var i = 0; i<cartProductTitle.length; i++){
-            alert("wow");
+        for(var i = 0; i<=cartProductTitle.length; i++){
             if(cartProductTitle[i] == title){
                     alert("You have already added this item to cart");
                 }
                 else{
-                    var cartContentBox = `<img src="images/sneakers-1.jpg" alt="" class="cart-img">
-                    <div class="detail-box">
-                    <div class="cart-product-title">Sneaker 1</div>
-                    <div class="cart-price">$40</div>
-                    <input type="number" name="" value="1" class="cart-quantity">
-                    <i class="fa-solid fa-trash cart-remove" style="color: red;"></i>
-                    </div>`;
+                    var cartContentBox = `<img src="` + imgSrc + `images/sneakers-1.jpg" alt="" class="cart-img">
+                        <div class="detail-box">
+                        <div class="cart-product-title">Sneaker 1</div>
+                        <div class="cart-price">$40</div>
+                        <input type="number" name="" value="1" class="cart-quantity">
+                        <i class="fa-solid fa-trash cart-remove" style="color: red;"></i>
+                        </div>`;
                     cartShopBox.insertAdjacentHTML("beforeend", cartContentBox);
-                    alert("ok");
+                    cartContent.prepend(cartShopBox);
                 }
         }
     }
@@ -46,7 +46,6 @@ addCart.forEach(function(button){
         var clickedButton = event.currentTarget;
         // Call another function and pass the clicked button as an argument
         getItemInfo(clickedButton);
-        console.log(clickedButton);
     });
 });
 
