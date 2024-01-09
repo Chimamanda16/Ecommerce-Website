@@ -1,7 +1,9 @@
 // Variables and constants
 const cart = document.querySelector(".cart");
+const cartContent = document.querySelector(".cart-content");
 const cartIcon = document.querySelector("#cart-icon");
 const closeCartBtn = document.querySelector(".close-cart");
+const delItemBtn = document.querySelector("cart-remove");
 const nav = document.querySelector(".nav");
 
 // Cart open and close
@@ -18,3 +20,14 @@ const openCart = ()=>{
 }
 cartIcon.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart)
+
+// Remove item from cart
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ready);
+} else {
+    ready();
+}
+
+function ready() {
+    
+}
