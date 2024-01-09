@@ -4,7 +4,7 @@ const cart = document.querySelector(".cart");
 var cartBoxes = document.getElementsByClassName("cart-box");
 const cartContent = document.querySelector(".cart-content");
 var cartProductTitle = document.querySelectorAll(".cart-product-title");
-const cartQuantity = document.querySelector(".cart-quantity");
+const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartIcon = document.querySelector("#cart-icon");
 const closeCartBtn = document.querySelector(".close-cart");
 const delItemBtn = document.querySelector(".cart-remove");
@@ -70,13 +70,17 @@ closeCartBtn.addEventListener("click", closeCart)
 //     }
 // }
 
-// // Keep item quantity positive
-// const positive = () =>{
-//     if(cartQuantity.value <= 0){
-//         cartQuantity.value = 1;
-//     }
-// }
-// cartQuantity.addEventListener("click", positive);
+// Keep item quantity positive
+const positive = () =>{
+        if(cartQuantity.value <= 0){
+            cartQuantity.value = 1;
+    }
+}
+if(cartQuantity.length>0){
+    cartQuantity.forEach(function (cartQuant) {
+        cartQuant.addEventListener("click", positive);        
+    });
+}
 
 // // Update Total Price
 // const updatePrice = () =>{
