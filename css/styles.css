@@ -124,6 +124,21 @@ section{
     width: 20%;
 }
 
+.sc-btn{
+    display: block;
+    color: var(--text-color);
+}
+
+.sc-container{
+    width: 100%;
+    text-align: center;
+    margin-top: 15%;
+}
+
+.sc-img{
+    width: 200px;
+}
+
 .shop-content{
     text-align: center;
 }
