@@ -1,6 +1,6 @@
 // Variables and constants
 const cart = document.querySelector(".cart");
-var cartBox = document.getElementsByClassName("cart-box");
+var cartBoxes = document.getElementsByClassName("cart-box");
 const cartContent = document.querySelector(".cart-content");
 const cartQuantity = document.querySelector(".cart-quantity");
 const cartIcon = document.querySelector("#cart-icon");
@@ -15,7 +15,6 @@ const closeCart = ()=>{
     cartIcon.style.display = "block";
     nav.style.width = "100%";
 }
-
 const openCart = ()=>{
     cart.style.display = "block";
     cartIcon.style.display = "none";
@@ -23,6 +22,13 @@ const openCart = ()=>{
 }
 cartIcon.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart)
+
+// Update total
+const updateTotal = ()=>{
+    if(cartBoxes.length <= 0){
+        totalPrice.innerHTML = "$" + 0;
+    }
+}
 
 // Keep item quantity positive
 const positive = () =>{
@@ -53,6 +59,7 @@ function ready() {
     const removeItem = ()=>{
         const cart = delItemBtn.parentNode.parentNode;
         cart.remove();
+        updateTotal();
     }
     delItemBtn.addEventListener("click", removeItem);
 }
