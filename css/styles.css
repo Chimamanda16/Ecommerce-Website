@@ -49,8 +49,10 @@ section{
 }
 
 .cart{
+    background-color: var(--container-color);
     display: none;
-    margin: auto 2% auto auto;
+    height: 100vh;
+    margin: 0;
     padding: 4%;
     position: fixed;
     right: 0;
@@ -145,6 +147,7 @@ section{
 
 .total{
     display: flex;
+    margin: 6%;
 }
 
 .total-title, .logo{
