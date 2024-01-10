@@ -4,7 +4,6 @@ const cart = document.querySelector(".cart");
 var cartBoxes = document.getElementsByClassName("cart-box");
 const cartContent = document.querySelector(".cart-content");
 var cartProductTitle = document.querySelectorAll(".cart-product-title");
-const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartIcon = document.querySelector("#cart-icon");
 const closeCartBtn = document.querySelector(".close-cart");
 const delItemBtn = document.querySelectorAll(".cart-remove");
@@ -35,6 +34,15 @@ const getItemInfo = (event)=>{
                         </div>`;
                     cartShopBox.insertAdjacentHTML("beforeend", cartContentBox);
                     cartContent.prepend(cartShopBox);
+                    // Keep item quantity positive
+                    var cartQuantity = cartShopBox.getElementsByClassName("cart-quantity")[0];
+                    cartQuantity.addEventListener("change", function(event){
+                        if(event.target.value <= 0){
+                            event.target.value = 1;
+                        }
+                    });
+                    // Remove item from cart
+                    
                 }
         }
     }
@@ -70,27 +78,16 @@ const updateTotal = ()=>{
     }
 }
 
-// Keep item quantity positive
-const positive = () =>{
-        if(cartQuantity.value <= 0){
-            cartQuantity.value = 1;
-    }
-}
-if(cartQuantity.length>0){
-    cartQuantity.forEach(function (cartQuant) {
-        cartQuant.addEventListener("click", positive);        
-    });
-}
 
 // Update Total Price
-const updatePrice = () =>{
-    // Price tag
-    const priceTag = cartQuantity.previousElementSibling.innerHTML;
-    var price = priceTag.match(/\d+/);
-    price = Math.round((cartQuantity.value * price)*100)/100;
-    totalPrice.innerHTML = "$" + price; 
-}
-cartQuantity.addEventListener("click", updatePrice);
+// const updatePrice = () =>{
+//     // Price tag
+//     const priceTag = cartQuantity.previousElementSibling.innerHTML;
+//     var price = priceTag.match(/\d+/);
+//     price = Math.round((cartQuantity.value * price)*100)/100;
+//     totalPrice.innerHTML = "$" + price; 
+// }
+// cartQuantity.addEventListener("click", updatePrice);
 
 // Remove item from cart
 if (document.readyState === "loading") {
