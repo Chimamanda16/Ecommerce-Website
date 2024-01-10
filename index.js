@@ -7,7 +7,7 @@ var cartProductTitle = document.querySelectorAll(".cart-product-title");
 const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartIcon = document.querySelector("#cart-icon");
 const closeCartBtn = document.querySelector(".close-cart");
-const delItemBtn = document.querySelector(".cart-remove");
+const delItemBtn = document.querySelectorAll(".cart-remove");
 const nav = document.querySelector(".nav");
 const totalPrice = document.querySelector(".total-price");
 
@@ -63,12 +63,12 @@ const openCart = ()=>{
 cartIcon.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart)
 
-// // Update total
-// const updateTotal = ()=>{
-//     if(cartBoxes.length <= 0){
-//         totalPrice.innerHTML = "$" + 0;
-//     }
-// }
+// Update total
+const updateTotal = ()=>{
+    if(cartBoxes.length <= 0){
+        totalPrice.innerHTML = "$" + 0;
+    }
+}
 
 // Keep item quantity positive
 const positive = () =>{
@@ -82,28 +82,28 @@ if(cartQuantity.length>0){
     });
 }
 
-// // Update Total Price
-// const updatePrice = () =>{
-//     // Price tag
-//     const priceTag = cartQuantity.previousElementSibling.innerHTML;
-//     var price = priceTag.match(/\d+/);
-//     price = Math.round((cartQuantity.value * price)*100)/100;
-//     totalPrice.innerHTML = "$" + price; 
-// }
-// cartQuantity.addEventListener("click", updatePrice);
+// Update Total Price
+const updatePrice = () =>{
+    // Price tag
+    const priceTag = cartQuantity.previousElementSibling.innerHTML;
+    var price = priceTag.match(/\d+/);
+    price = Math.round((cartQuantity.value * price)*100)/100;
+    totalPrice.innerHTML = "$" + price; 
+}
+cartQuantity.addEventListener("click", updatePrice);
 
-// // Remove item from cart
-// if (document.readyState === "loading") {
-//     document.addEventListener("DOMContentLoaded", ready);
-// } else {
-//     ready();
-// }
+// Remove item from cart
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ready);
+} else {
+    ready();
+}
 
-// function ready() {
-//     const removeItem = ()=>{
-//         const cart = delItemBtn.parentNode.parentNode;
-//         cart.remove();
-//         updateTotal();
-//     }
-//     delItemBtn.addEventListener("click", removeItem);
-// }
+function ready() {
+    const removeItem = ()=>{
+        const cart = delItemBtn[0].parentNode.parentNode;
+        cart.remove();
+        updateTotal();
+    }
+    delItemBtn[0].addEventListener("click", removeItem);
+}
