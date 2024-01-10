@@ -6,7 +6,6 @@ const cartContent = document.querySelector(".cart-content");
 var cartProductTitle = document.querySelectorAll(".cart-product-title");
 const cartIcon = document.querySelector("#cart-icon");
 const closeCartBtn = document.querySelector(".close-cart");
-const delItemBtn = document.querySelectorAll(".cart-remove");
 const nav = document.querySelector(".nav");
 const totalPrice = document.querySelector(".total-price");
 
@@ -23,27 +22,31 @@ const getItemInfo = (event)=>{
         for(var i = 0; i<=cartProductTitle.length; i++){
             if(cartProductTitle[i] == title){
                     alert("You have already added this item to cart");
+            }
+            else{
+                var cartContentBox = `<img src="` + imgSrc + `images/sneakers-1.jpg" alt="" class="cart-img">
+                    <div class="detail-box">
+                    <div class="cart-product-title">Sneaker 1</div>
+                    <div class="cart-price">$40</div>
+                    <input type="number" name="" value="1" class="cart-quantity">
+                    <i class="fa-solid fa-trash cart-remove" style="color: red;"></i>
+                    </div>`;
+                cartShopBox.insertAdjacentHTML("beforeend", cartContentBox);
+                cartContent.prepend(cartShopBox);
+                // Keep item quantity positive
+                var cartQuantity = cartShopBox.getElementsByClassName("cart-quantity")[0];
+                cartQuantity.addEventListener("change", function(event){
+                if(event.target.value <= 0){
+                    event.target.value = 1;
                 }
-                else{
-                    var cartContentBox = `<img src="` + imgSrc + `images/sneakers-1.jpg" alt="" class="cart-img">
-                        <div class="detail-box">
-                        <div class="cart-product-title">Sneaker 1</div>
-                        <div class="cart-price">$40</div>
-                        <input type="number" name="" value="1" class="cart-quantity">
-                        <i class="fa-solid fa-trash cart-remove" style="color: red;"></i>
-                        </div>`;
-                    cartShopBox.insertAdjacentHTML("beforeend", cartContentBox);
-                    cartContent.prepend(cartShopBox);
-                    // Keep item quantity positive
-                    var cartQuantity = cartShopBox.getElementsByClassName("cart-quantity")[0];
-                    cartQuantity.addEventListener("change", function(event){
-                        if(event.target.value <= 0){
-                            event.target.value = 1;
-                        }
-                    });
-                    // Remove item from cart
-                    
-                }
+                });
+                // Remove item from cart
+                var delItemBtn = cartShopBox.getElementsByClassName("cart-remove")[0];
+                delItemBtn.addEventListener("click", function(event){
+                const cartRemove = delItemBtn.parentNode.parentNode;
+                    cartRemove.remove();
+                });
+            }
         }
     }
     createItemInfo(addImg, imgPrice, productTitle);
@@ -88,19 +91,3 @@ const updateTotal = ()=>{
 //     totalPrice.innerHTML = "$" + price; 
 // }
 // cartQuantity.addEventListener("click", updatePrice);
-
-// Remove item from cart
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", ready);
-} else {
-    ready();
-}
-
-function ready() {
-    const removeItem = ()=>{
-        const cart = delItemBtn[0].parentNode.parentNode;
-        cart.remove();
-        updateTotal();
-    }
-    delItemBtn[0].addEventListener("click", removeItem);
-}
