@@ -54,11 +54,13 @@ section{
 
 .cart{
     background-color: var(--container-color);
+    border-radius: 10px;
     display: none;
     height: 100vh;
     margin: 0;
+    overflow: auto;
     padding: 4%;
-    position: fixed;
+    position: absolute;
     right: 0;
     text-align: center;
     width: 30%;
