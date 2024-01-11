@@ -67,9 +67,6 @@ section{
 .cart-box{
     display: flex;
     gap: 5%;
-}
-
-.cart-content{
     margin-bottom: 2%;
 }
 
