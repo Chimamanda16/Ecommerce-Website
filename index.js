@@ -1,5 +1,6 @@
 // Variables and constants
 const addCart = document.querySelectorAll(".add-cart");
+const bag = document.getElementById("cart-icon");
 const cart = document.querySelector(".cart");
 var cartContent = document.querySelector(".cart-content");
 const cartIcon = document.querySelector("#cart-icon");
@@ -185,6 +186,10 @@ function loadCartItems(){
     if (cartTotal) {
         cartTotalPrice.innerText = "$" + cartTotal;
     }
+    var bagNo = localStorage.getItem("bagNo");
+    if(bagNo){
+        bag.setAttribute("data-quantity", bagNo);
+    }
 }
 function ready() {
     loadCartItems();
@@ -198,7 +203,7 @@ function updateBagNum(){
         var cartBox = cartBoxes[i];
         var cartQuantity = cartBox.getElementsByClassName("cart-quantity")[0];
         bagNum += parseInt(cartQuantity.value, 10); 
-        var bag = document.getElementById("cart-icon");
-        bag.setAttribute("data-quantity", bagNum);
     }
+    bag.setAttribute("data-quantity", bagNum);
+    localStorage.setItem("bagNo", bagNum);
 }
