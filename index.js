@@ -52,7 +52,9 @@ function UpdateQuantityNumber(cartQuant){
         cartQuant.target.value = 1;
     }
     updateTotal();
+    updateBagNum();
 }
+
 // Add to cart function
 addCart.forEach(function(button){
     button.addEventListener("click", function(event){
@@ -60,6 +62,7 @@ addCart.forEach(function(button){
         getItemInfo(addCartIcon);
         updateTotal();
         saveCartItems();
+        updateBagNum();
     });
 });
 
@@ -84,6 +87,7 @@ function createItem(title, box){
             var cartQuantity = cartShopBox.getElementsByClassName("cart-quantity")[0];
             cartQuantity.addEventListener("change", function(event){
                 UpdateQuantityNumber(event);
+                updateBagNum();
             });
             // Remove item from cart
             var delItemBtn = cartShopBox.getElementsByClassName("cart-remove")[0];
@@ -91,6 +95,7 @@ function createItem(title, box){
                 const cartRemove = delItemBtn.parentNode.parentNode;
                 cartRemove.remove();
                 updateTotal();
+                updateBagNum();
             });
         }
         
@@ -102,6 +107,7 @@ function createItem(title, box){
         var cartQuantity = cartShopBox.getElementsByClassName("cart-quantity")[0];
         cartQuantity.addEventListener("change", function(event){
             UpdateQuantityNumber(event);
+            updateBagNum();
         });
         // Remove item from cart
         var delItemBtn = cartShopBox.getElementsByClassName("cart-remove")[0];
@@ -109,6 +115,7 @@ function createItem(title, box){
             const cartRemove = delItemBtn.parentNode.parentNode;
             cartRemove.remove();
             updateTotal();
+            updateBagNum();
         });
     }
 }
@@ -127,7 +134,6 @@ function getItemInfo(event){
         </div>`;
         createItem(productTitle, cartContentBox);
 }
-
 
 // Save Items when page is refreshed
 function saveCartItems(){
@@ -182,4 +188,17 @@ function loadCartItems(){
 }
 function ready() {
     loadCartItems();
+}
+
+// Update shopping bag icon number
+function updateBagNum(){
+    var bagNum = 0;
+    var cartBoxes = cartContent.getElementsByClassName("cart-box");
+    for(var i = 0; i < cartBoxes.length; i++){
+        var cartBox = cartBoxes[i];
+        var cartQuantity = cartBox.getElementsByClassName("cart-quantity")[0];
+        bagNum += parseInt(cartQuantity.value, 10); 
+        var bag = document.getElementById("cart-icon");
+        bag.setAttribute("data-quantity", bagNum);
+    }
 }
