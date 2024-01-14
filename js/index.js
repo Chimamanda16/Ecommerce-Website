@@ -97,6 +97,7 @@ function createItem(title, box){
                 cartRemove.remove();
                 updateTotal();
                 updateBagNum();
+                saveCartItems();
             });
         }
         
@@ -117,6 +118,7 @@ function createItem(title, box){
             cartRemove.remove();
             updateTotal();
             updateBagNum();
+            saveCartItems();
         });
     }
 }

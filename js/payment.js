@@ -17,6 +17,10 @@ function payWithPaystack(e) {
     callback: function(response){
       let message = 'Payment complete! Reference: ' + response.reference;
       alert(message);
+      console.log(response);
+      if (response.status === 'success') {
+        window.location.href = 'success.html';
+      }
     }
   });
 
